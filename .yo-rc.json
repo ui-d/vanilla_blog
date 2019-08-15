@@ -1,0 +1,13 @@
+{
+  "generator-chisel": {
+    "config": {
+      "name": "feTest",
+      "author": "Dawid Nawrocki",
+      "projectType": "fe",
+      "nameSlug": "fetest",
+      "nameCamel": "FeTest",
+      "chiselVersion": "0.16.0",
+      "has_jquery": false
+    }
+  }
+}
