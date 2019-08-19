@@ -20,7 +20,7 @@ module.exports = function serveTask(
     gulp.start('templates-watch');
 
     const browserSyncConfig = {
-      server: './',
+      server: './dist',
       ghostMode: false,
       online: true,
     };

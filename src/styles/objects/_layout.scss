@@ -7,7 +7,7 @@
 .o-layout {
   display: block;
 
-  @include bp(medium) {
+  @include bp(small) {
     display: flex;
   }
 }
