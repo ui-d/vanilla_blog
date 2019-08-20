@@ -12,10 +12,12 @@ async function displayBlog() {
   for (let i = 0; i < articles.length; i++) {
     articlesList += mediaComponent(articles[i]);
   }
-// todo 
-// zamienic na appendchild
-// dodac try catch / domyslne wartosci / najpierw deklaracja potem wywolanie / paginacja
-  document.querySelector('#app').innerHTML = articlesList;
+
+  const appElement = document.querySelector('#app');
+  appElement.insertAdjacentHTML('beforebegin', articlesList);
 }
 
 export default displayBlog;
+
+// todo
+// dodac try catch / domyslne wartosci / najpierw deklaracja potem wywolanie / paginacja
