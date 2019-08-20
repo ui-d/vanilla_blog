@@ -8,49 +8,69 @@
  */
 
 .o-media {
-  display: block;
+  display: flex;
 
-  @include clearfix();
-}
+  margin-bottom: 80px;
 
-.o-media__img {
-  float: left;
+  h2 {
+    font-family: $font-main-bold;
+    line-height: 43px;
 
-  margin-right: 1rem;
+    background: linear-gradient(90deg, #00565b 0%, #249059 90.29%);
+    -webkit-background-clip: text;
 
-  > img {
-    display: block;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-family: $font-main;
+    font-size: 2.4rem;
+    line-height: 34px;
+
+    color: #2d2d2d;
+  }
+
+  &:nth-child(6n+1),
+  &:nth-child(6n+2) {
+    width: 100%;
+    max-width: 50vw;
+  }
+
+  &:nth-child(6n+3) {
+    width: 100%;
+    max-width: 66.6vw;
+    margin-left: auto;
+  }
+
+  &:nth-child(6n+4),
+  &:nth-child(6n+5) {
+    flex-direction: row-reverse;
+
+    width: 100%;
+    max-width: 50vw;
+  }
+
+  &:nth-child(6n+6) {
+    width: 100%;
+    max-width: 66.6vw;
+    margin-left: 0;
   }
 }
 
+.o-media__img {
+  width: 100%;
+  max-width: 100%;
+}
+
 .o-media__body {
-  display: block;
   overflow: hidden;
+
+  padding: 35px 80px 48px 80px;
+
+  background: $color-white;
 
   &,
   > :last-child {
     margin-bottom: 0;
-  }
-}
-
-/* Reversed media objects
-   ========================================================================== */
-
-.o-media--reverse {
-  > .o-media__img {
-    float: right;
-
-    margin-right: 0;
-    margin-left: 1rem;
-  }
-}
-
-/* Gutterless media objects
-   ========================================================================== */
-
-.o-media--flush {
-  > .o-media__img {
-    margin-right: 0;
-    margin-left: 0;
   }
 }
