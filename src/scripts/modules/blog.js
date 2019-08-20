@@ -1,8 +1,9 @@
 import getNewArticles from './articles';
 
 function mediaComponent({ author, title, article, imageUrl }) {
-  const lead = article.slice(0, 110);
-  return `<article class="o-media"><div class="o-media__img"><img src="${imageUrl}"></div><div class="o-media__body"><h4>${author}</h4><h2>${title}</h2><p>${lead}</p></div></article>`;
+  const lead = article.slice(0, 300);
+  const titleNoDot = title.slice(0, -1);
+  return `<article class="o-media"><div class="o-media__img"><img src="${imageUrl}"></div><div class="o-media__body"><h4>${author}</h4><h2>${titleNoDot}</h2><p>${lead}</p></div></article>`;
 }
 
 async function displayBlog() {
