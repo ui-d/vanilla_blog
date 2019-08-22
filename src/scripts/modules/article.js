@@ -11,10 +11,11 @@ function mediaComponent({ author, title, article, imageUrl, id, date }) {
   <div class="c-article__img"><img src="${imageUrl}"></div>
   <div class="c-article__headings">
   <h5>${dateInProperFormat}</h5>
+  <h4>${author}</h4>
   <h2>${titleNoDot}</h2>
   </div>
-  <div class="c-article__content">${article}</div>
   </div>
+  <div class="c-article__content">${article}</div>
   </article>`;
 }
 
