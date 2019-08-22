@@ -94,6 +94,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "axios": "^0.19.0",
+    "dayjs": "^1.8.15",
     "navigo": "^7.1.2",
     "normalize-scss": "^7.0.1"
   },
