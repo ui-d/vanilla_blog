@@ -5,6 +5,9 @@
 .c-header {
   font-family: $font-main-bold;
 
+  position: sticky;
+  top: 0;
+
   align-items: center;
   justify-content: center;
 
@@ -15,7 +18,7 @@
 
   color: $color-white;
   background: $header-bg;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, .1);
 
   h1 {
     @include bp-down(small) {

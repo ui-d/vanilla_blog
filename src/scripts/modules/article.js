@@ -7,16 +7,16 @@ function mediaComponent({ author, title, article, imageUrl, id, date }) {
   const dateInProperFormat = dayjs(dateOfPublication).format('MMMM D, YYYY');
 
   return `<article class="o-wrapper c-article">
-  <div class="c-article__header">
-  <div class="c-article__img"><img src="${imageUrl}"></div>
-  <div class="c-article__headings">
-  <h5>${dateInProperFormat}</h5>
-  <h4>${author}</h4>
-  <h2>${titleNoDot}</h2>
-  </div>
-  </div>
-  <div class="c-article__content">${article}</div>
-  </article>`;
+            <div class="c-article__header">
+              <div class="c-article__img"><img src="${imageUrl}"></div>
+              <div class="c-article__headings">
+                <h5>${dateInProperFormat}</h5>
+                <h4>${author}</h4>
+                <h2>${titleNoDot}</h2>
+              </div>
+            </div>
+            <div class="c-article__content">${article}</div>
+          </article>`;
 }
 
 async function displayArticle() {
