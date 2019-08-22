@@ -1,7 +1,3 @@
-/*
-  Project: feTest
-  Author: Dawid Nawrocki
- */
 import '@babel/polyfill';
 import Navigo from 'navigo';
 import blog from './modules/blog';
@@ -14,11 +10,11 @@ const router = new Navigo(root, useHash, hash);
 
 router
   .on({
-    'article/:id': () => {
-      blog.then(x => {
-        document.querySelector('main').innerHTML = x;
+    '': () => {
+      blog.then(page => {
+        document.querySelector('main').innerHTML = page;
 
-        let articleLinks = [...document.querySelectorAll('h2[data-link]')];
+        const articleLinks = [...document.querySelectorAll('h2[data-link]')];
 
         articleLinks.map(el => {
           el.addEventListener('click', e => {
@@ -29,13 +25,13 @@ router
         });
       });
     },
-    '': params => {
-      article.then(x => {
-        document.querySelector('main').innerHTML = x;
+    'article/:id': params => {
+      article(params.id).then(page => {
+        document.querySelector('main').innerHTML = page;
       });
     },
     '*': () => {
-      console.log('asdf');
+      document.querySelector('main').innerHTML = 'You did something wrong...';
     },
   })
   .resolve();

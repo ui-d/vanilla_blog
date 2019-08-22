@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import getNewArticles from './articles';
 
-function mediaComponent({ author, title, article, imageUrl, id, date }) {
+function mediaComponent({ author, title, article, imageUrl, date }) {
   const titleNoDot = title.slice(0, -1);
   const dateOfPublication = date.split('T')[0];
   const dateInProperFormat = dayjs(dateOfPublication).format('MMMM D, YYYY');
@@ -19,16 +19,20 @@ function mediaComponent({ author, title, article, imageUrl, id, date }) {
           </article>`;
 }
 
-async function displayArticle() {
-  const articles = await getNewArticles();
-  let article = mediaComponent(articles[0]);
-  // for (let i = 0; i < articles.length; i++) {
-  //   article += mediaComponent(articles[i]);
-  // }
-  return article;
+async function displayArticle(params) {
+  let article = '';
+  try {
+    const articles = await getNewArticles();
+    article = articles.filter(art => art.id === params);
+  } catch (error) {
+    document.querySelector(
+      'main',
+    ).innerHTML = `Something went wrong - ${error}`;
+  }
+  return mediaComponent(article[0]);
 }
 
-export default displayArticle();
+export default displayArticle;
 
 // todo
 // dodac try catch / domyslne wartosci / najpierw deklaracja potem wywolanie / paginacja

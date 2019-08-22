@@ -17,11 +17,18 @@ function mediaComponent({ author, title, article, imageUrl, id }) {
 }
 
 async function displayBlog() {
-  const articles = await getNewArticles();
   let articlesList = '';
 
-  for (let i = 0; i < articles.length; i++) {
-    articlesList += mediaComponent(articles[i]);
+  try {
+    const articles = await getNewArticles();
+
+    for (let i = 0; i < articles.length; i++) {
+      articlesList += mediaComponent(articles[i]);
+    }
+  } catch (error) {
+    document.querySelector(
+      'main',
+    ).innerHTML = `Something went wrong - ${error}`;
   }
 
   return articlesList;
