@@ -1,4 +1,8 @@
 main {
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
+
+  @include bp(large) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

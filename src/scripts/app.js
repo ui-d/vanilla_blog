@@ -7,11 +7,23 @@ const root = '';
 const useHash = false;
 const hash = '#';
 const router = new Navigo(root, useHash, hash);
+const listElm = document.querySelector('main');
+
+window.onscroll = () => {
+  if (window.scrollY > document.body.offsetHeight - window.outerHeight) {
+
+
+
+ 
+  }
+};
 
 router
   .on({
     '': () => {
       blog.then(page => {
+        const test = /<article((.|\n)*)<\/article>/g;
+        const articlez = page.match(test)
         document.querySelector('main').innerHTML = page;
 
         const articleLinks = [...document.querySelectorAll('h2[data-link]')];
@@ -19,7 +31,7 @@ router
         articleLinks.map(el => {
           el.addEventListener('click', e => {
             e.preventDefault();
-            let path = el.getAttribute('data-link');
+            const path = el.getAttribute('data-link');
             router.navigate(path);
           });
         });

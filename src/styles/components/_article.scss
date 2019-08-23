@@ -74,6 +74,10 @@
     margin-bottom: 20px;
     padding: 0 9.3%;
 
+    @include bp-only(small) {
+      font-size: 2rem;
+    }
+
     @include bp(medium) {
       padding: 0 19.5%;
     }
