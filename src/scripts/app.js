@@ -2,6 +2,7 @@ import '@babel/polyfill';
 import Navigo from 'navigo';
 import blog from './modules/blog';
 import article from './modules/article';
+import { getMoreArticles } from './modules/blog'
 
 const root = '';
 const useHash = false;
@@ -12,22 +13,18 @@ router
   .on({
     '': () => {
       blog.then(page => {
-        // const test = /<article((.|\n)*)<\/article>/g;
-        // const articlez = page.match(test)
         document.querySelector('main').innerHTML = page;
-
-        const articleLinks = [...document.querySelectorAll('h2[data-link]')];
-
-        articleLinks.forEach(el => {
-          el.addEventListener('click', e => {
-            e.preventDefault();
-            const path = el.getAttribute('data-link');
+        document.querySelector('main').addEventListener('click', e => {
+          if (e.target && e.target.matches('h2[data-link]')) {
+            const path = e.target.getAttribute('data-link');
             router.navigate(path);
-          });
+          }
         });
+        window.addEventListener('scroll', getMoreArticles);
       });
     },
     'article/:id': params => {
+      window.removeEventListener('scroll', getMoreArticles);
       article(params.id).then(page => {
         document.querySelector('main').innerHTML = page;
       });
@@ -37,3 +34,5 @@ router
     },
   })
   .resolve();
+
+export default router;

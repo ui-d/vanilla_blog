@@ -1,6 +1,8 @@
 import { debounce } from 'underscore';
 import getNewArticles from './articles';
+
 const rootElement = document.querySelector('main');
+export const articles = [];
 
 function mediaComponent({ author, title, article, imageUrl, id }) {
   const paragraphRegex = /<(.|\n)*?>/g;
@@ -22,9 +24,9 @@ async function displayBlog(articlesNumber) {
   let articlesList = '';
 
   try {
-    const articles = await getNewArticles(articlesNumber);
-
-    for (let i = 0; i < articles.length; i++) {
+    const newArticles = await getNewArticles(articlesNumber);
+    articles.push(...newArticles);
+    for (let i = 0; i < articles.length; i += 1) {
       articlesList += mediaComponent(articles[i]);
     }
   } catch (error) {
@@ -34,19 +36,16 @@ async function displayBlog(articlesNumber) {
   return articlesList;
 }
 
-const getMoreArticles = debounce(() => {
-  if (window.scrollY + 1000 > document.body.offsetHeight - window.outerHeight) {
-    let pageNumber = 1;
-    let newPage = pageNumber++;
+export const getMoreArticles = debounce(() => {
+  if (window.scrollY > document.body.offsetHeight - window.outerHeight) {
+    const pageNumber = 1;
+    let newPage = pageNumber + 1;
     displayBlog(newPage).then(page => {
       rootElement.insertAdjacentHTML('beforeend', page);
+      console.log("jest")
     });
   }
 }, 200);
-
-window.onscroll = () => {
-  getMoreArticles();
-};
 
 export default displayBlog();
 

@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import getNewArticles from './articles';
+import { articles } from './blog';
 
 function mediaComponent({ author, title, article, imageUrl, date }) {
   const titleNoDot = title.slice(0, -1);
@@ -22,7 +22,6 @@ function mediaComponent({ author, title, article, imageUrl, date }) {
 async function displayArticle(params) {
   let article = '';
   try {
-    const articles = await getNewArticles();
     article = articles.filter(art => art.id === params);
   } catch (error) {
     document.querySelector(
