@@ -1,7 +1,9 @@
 import API from './api';
 
-function getNewArticles() {
-  return API.get('/articles?_limit=11').then(response => response.data);
+function getNewArticles(pageNumber = 1) {
+  return API.get(`/articles?_page=${pageNumber}`).then(
+    response => response.data,
+  );
 }
 
 export default getNewArticles;

@@ -1,4 +1,6 @@
+import { debounce } from 'underscore';
 import getNewArticles from './articles';
+const rootElement = document.querySelector('main');
 
 function mediaComponent({ author, title, article, imageUrl, id }) {
   const paragraphRegex = /<(.|\n)*?>/g;
@@ -16,23 +18,35 @@ function mediaComponent({ author, title, article, imageUrl, id }) {
           </article>`;
 }
 
-async function displayBlog() {
+async function displayBlog(articlesNumber) {
   let articlesList = '';
 
   try {
-    const articles = await getNewArticles();
+    const articles = await getNewArticles(articlesNumber);
 
     for (let i = 0; i < articles.length; i++) {
       articlesList += mediaComponent(articles[i]);
     }
   } catch (error) {
-    document.querySelector(
-      'main',
-    ).innerHTML = `Something went wrong - ${error}`;
+    rootElement.innerHTML = `Something went wrong - ${error}`;
   }
 
   return articlesList;
 }
+
+const getMoreArticles = debounce(() => {
+  if (window.scrollY + 1000 > document.body.offsetHeight - window.outerHeight) {
+    let pageNumber = 1;
+    let newPage = pageNumber++;
+    displayBlog(newPage).then(page => {
+      rootElement.insertAdjacentHTML('beforeend', page);
+    });
+  }
+}, 200);
+
+window.onscroll = () => {
+  getMoreArticles();
+};
 
 export default displayBlog();
 

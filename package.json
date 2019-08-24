@@ -79,7 +79,6 @@
     "gulp-twig": "^v1.2.0",
     "gulp-uglify-es": "^1.0.4",
     "ignore": "^3.3.8",
-    "lodash": "^4.17.5",
     "multipipe": "^2.0.3",
     "opn": "^5.3.0",
     "pre-commit": "^1.2.2",
@@ -96,7 +95,8 @@
     "axios": "^0.19.0",
     "dayjs": "^1.8.15",
     "navigo": "^7.1.2",
-    "normalize-scss": "^7.0.1"
+    "normalize-scss": "^7.0.1",
+    "underscore": "^1.9.1"
   },
   "engines": {
     "node": "^8.10.0 || ^10.13.0"
