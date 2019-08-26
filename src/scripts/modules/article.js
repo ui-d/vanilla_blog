@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
 import { articles } from './blog';
 
+const rootElement = document.querySelector('main');
+
 function mediaComponent({ author, title, article, imageUrl, date }) {
   const titleNoDot = title.slice(0, -1);
   const dateOfPublication = date.split('T')[0];
@@ -24,14 +26,9 @@ async function displayArticle(params) {
   try {
     article = articles.filter(art => art.id === params);
   } catch (error) {
-    document.querySelector(
-      'main',
-    ).innerHTML = `Something went wrong - ${error}`;
+    rootElement.innerHTML = `Something went wrong - ${error}`;
   }
   return mediaComponent(article[0]);
 }
 
 export default displayArticle;
-
-// todo
-// dodac try catch / domyslne wartosci / najpierw deklaracja potem wywolanie / paginacja

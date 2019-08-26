@@ -1,6 +1,6 @@
 const config = {
   development: {
-    API_URL: 'https://stormy-shelf-93141.herokuapp.com'
+    API_URL: 'https://stormy-shelf-93141.herokuapp.com',
   },
   production: {
     API_URL: '',

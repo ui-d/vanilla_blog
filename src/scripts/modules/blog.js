@@ -42,7 +42,6 @@ export const getMoreArticles = debounce(() => {
     let newPage = pageNumber + 1;
     displayBlog(newPage).then(page => {
       rootElement.insertAdjacentHTML('beforeend', page);
-      console.log("jest")
     });
   }
 }, 200);

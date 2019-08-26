@@ -1,36 +1,39 @@
 import '@babel/polyfill';
 import Navigo from 'navigo';
-import blog from './modules/blog';
 import article from './modules/article';
-import { getMoreArticles } from './modules/blog'
+import blog, { getMoreArticles } from './modules/blog';
 
 const root = '';
 const useHash = false;
 const hash = '#';
 const router = new Navigo(root, useHash, hash);
+const rootElement = document.querySelector('main');
+
+function activateRouting(e) {
+  if (e.target && e.target.matches('h2[data-link]')) {
+    const path = e.target.dataset.link;
+    router.navigate(path);
+  }
+}
 
 router
   .on({
     '': () => {
+      rootElement.removeEventListener('click', activateRouting);
       blog.then(page => {
-        document.querySelector('main').innerHTML = page;
-        document.querySelector('main').addEventListener('click', e => {
-          if (e.target && e.target.matches('h2[data-link]')) {
-            const path = e.target.getAttribute('data-link');
-            router.navigate(path);
-          }
-        });
+        rootElement.innerHTML = page;
+        rootElement.addEventListener('click', activateRouting);
         window.addEventListener('scroll', getMoreArticles);
       });
     },
     'article/:id': params => {
       window.removeEventListener('scroll', getMoreArticles);
       article(params.id).then(page => {
-        document.querySelector('main').innerHTML = page;
+        rootElement.innerHTML = page;
       });
     },
     '*': () => {
-      document.querySelector('main').innerHTML = 'You did something wrong...';
+      rootElement.innerHTML = 'You did something wrong...';
     },
   })
   .resolve();
