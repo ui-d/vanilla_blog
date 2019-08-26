@@ -2,7 +2,8 @@ import { debounce } from 'underscore';
 import getNewArticles from './articles';
 
 const rootElement = document.querySelector('main');
-export const articles = [];
+export let articles = [];
+let pageNumber = 1;
 
 function mediaComponent({ author, title, article, imageUrl, id }) {
   const paragraphRegex = /<(.|\n)*?>/g;
@@ -20,14 +21,14 @@ function mediaComponent({ author, title, article, imageUrl, id }) {
           </article>`;
 }
 
-async function displayBlog(articlesNumber) {
+async function displayBlog(page) {
   let articlesList = '';
 
   try {
-    const newArticles = await getNewArticles(articlesNumber);
+    const newArticles = await getNewArticles(page);
     articles.push(...newArticles);
-    for (let i = 0; i < articles.length; i += 1) {
-      articlesList += mediaComponent(articles[i]);
+    for (let i = 0; i < newArticles.length; i += 1) {
+      articlesList += mediaComponent(newArticles[i]);
     }
   } catch (error) {
     rootElement.innerHTML = `Something went wrong - ${error}`;
@@ -37,16 +38,12 @@ async function displayBlog(articlesNumber) {
 }
 
 export const getMoreArticles = debounce(() => {
+  pageNumber += 1;
   if (window.scrollY > document.body.offsetHeight - window.outerHeight) {
-    const pageNumber = 1;
-    let newPage = pageNumber + 1;
-    displayBlog(newPage).then(page => {
+    displayBlog(pageNumber).then(page => {
       rootElement.insertAdjacentHTML('beforeend', page);
     });
   }
 }, 200);
 
 export default displayBlog();
-
-// todo
-// dodac try catch / domyslne wartosci / najpierw deklaracja potem wywolanie / paginacja

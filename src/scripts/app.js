@@ -10,6 +10,7 @@ const router = new Navigo(root, useHash, hash);
 const rootElement = document.querySelector('main');
 
 function activateRouting(e) {
+  window.scrollTo(0, 0);
   if (e.target && e.target.matches('h2[data-link]')) {
     const path = e.target.dataset.link;
     router.navigate(path);
@@ -33,6 +34,7 @@ router
       });
     },
     '*': () => {
+      window.scrollTo(0, 0);
       rootElement.innerHTML = 'You did something wrong...';
     },
   })
