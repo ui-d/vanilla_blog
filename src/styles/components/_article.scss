@@ -8,6 +8,7 @@
 
     @include bp(medium) {
       display: flex;
+
       margin-bottom: 124px;
     }
   }
@@ -17,17 +18,20 @@
   }
 
   &__img {
-    min-width: 50%;
-    max-height: 400px;
     overflow: hidden;
 
+    min-width: 50%;
+    max-height: 400px;
+
     @include bp(medium) {
-      max-height: 100%;
       overflow: none;
+
+      max-height: 100%;
     }
 
     img {
       width: 100%;
+
       object-fit: contain;
       @include bp(medium) {
         object-fit: none;
@@ -77,7 +81,6 @@
     @include bp-only(small) {
       font-size: 2rem;
     }
-
     @include bp(medium) {
       padding: 0 19.5%;
     }

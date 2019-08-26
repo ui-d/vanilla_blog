@@ -1,6 +1,10 @@
 main {
   display: block;
 
+  transition: opacity 0.3s;
+
+  opacity: 0;
+
   @include bp(large) {
     display: flex;
     flex-wrap: wrap;

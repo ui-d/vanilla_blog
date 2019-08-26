@@ -4,8 +4,9 @@
 
 .c-header {
   font-family: $font-main-bold;
-  z-index: 2;
+
   position: sticky;
+  z-index: 2;
   top: 0;
 
   align-items: center;
@@ -22,8 +23,9 @@
 
   h1 {
     @include bp-down(small) {
-      padding: 32px 0 0 20px;
       font-size: 2.1rem;
+
+      padding: 32px 0 0 20px;
     }
   }
 }

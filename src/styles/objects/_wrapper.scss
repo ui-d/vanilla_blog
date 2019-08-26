@@ -7,8 +7,9 @@
  */
 
 .o-wrapper {
-  @include clearfix();
+  max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
-  max-width: 1280px;
+
+  @include clearfix();
 }

@@ -2,7 +2,7 @@ import { debounce } from 'underscore';
 import getNewArticles from './articles';
 
 const rootElement = document.querySelector('main');
-export let articles = [];
+export const articles = [];
 let pageNumber = 1;
 
 function mediaComponent({ author, title, article, imageUrl, id }) {

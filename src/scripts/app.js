@@ -23,6 +23,7 @@ router
       rootElement.removeEventListener('click', activateRouting);
       blog.then(page => {
         rootElement.innerHTML = page;
+        rootElement.style.opacity = 1;
         rootElement.addEventListener('click', activateRouting);
         window.addEventListener('scroll', getMoreArticles);
       });
